@@ -98,6 +98,7 @@ from dbo.[SQL - Retail Sales Analysis_utf ]
 where total_sale > 1000
    
 6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.**:
+
 Select category, gender, count(transactions_id) as TotalTransaction
 from dbo.[SQL - Retail Sales Analysis_utf ]
 group by category, gender
@@ -144,6 +145,7 @@ from dbo.[SQL - Retail Sales Analysis_utf ]
 group by category
 
 10. **Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)**:
+
 WITh Hourly_Sale AS(
 SELECT 
     CASE
