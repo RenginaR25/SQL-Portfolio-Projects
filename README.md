@@ -52,6 +52,7 @@ where
 	or quantity is NULL
 
 ----Delete records with NUll values----------------------------------
+
 Delete 
 from dbo.[SQL - Retail Sales Analysis_utf ]
 where 
