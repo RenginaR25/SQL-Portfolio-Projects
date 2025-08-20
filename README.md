@@ -118,6 +118,7 @@ WITH Best_Selling_Month AS(
 		MONTH(sale_date) 
 )
 
+
 Select  year_val, month_val, AvgSales
 	FROM Best_Selling_Month 
 	WHERE RankByAvgSale = 1
@@ -130,6 +131,7 @@ WITH TOP_5_Customers AS(
 	group by customer_id
 --	ORDER BY  2 DESC
 )
+
 
 SELECT TOP 5 customer_id, TotalSalesByCustomer
 from TOP_5_Customers
@@ -152,6 +154,7 @@ SELECT
 FROM
     dbo.[SQL - Retail Sales Analysis_utf ]
 )
+
 
 SELECT shift, count(*) as total_orders
 FROM Hourly_Sale
