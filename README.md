@@ -107,7 +107,8 @@ order by 1
 7. **Write a SQL query to calculate the average sale for each month. Find out best-selling month in each year.**:
 
 WITH Best_Selling_Month AS(
-	SELECT
+	
+ SELECT
 		YEAR(sale_date) AS year_val,
 		MONTH(sale_date) AS month_val,
 		AVG(total_sale) AS AvgSales,
@@ -127,7 +128,8 @@ Select  year_val, month_val, AvgSales
 8. **Write a SQL query to find top 5 customers based on the highest total sales.**:
 
 WITH TOP_5_Customers AS(
-	Select customer_id, sum(total_sale) as TotalSalesByCustomer
+	
+ Select customer_id, sum(total_sale) as TotalSalesByCustomer
 	from dbo.[SQL - Retail Sales Analysis_utf ]
 	group by customer_id
 --	ORDER BY  2 DESC
@@ -147,6 +149,7 @@ group by category
 10. **Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)**:
 
 WITh Hourly_Sale AS(
+
 SELECT 
     CASE
         WHEN CAST(sale_time AS TIME) >= '06:00:00' AND CAST(sale_time AS TIME) < '12:00:00' THEN 'Morning'
