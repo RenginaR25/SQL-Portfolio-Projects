@@ -28,42 +28,48 @@ from dbo.[SQL - Retail Sales Analysis_utf ]
 ### 2. Data Exploration & Cleaning
 
 - **Record Count**: Determine the total number of records in the dataset.
+  
 Select count(*)
 from dbo.[SQL - Retail Sales Analysis_utf ]
 - **Customer Count**: Find out how many unique customers are in the dataset.
+  
 Select count(distinct(customer_id)) as Total_Customer
 from dbo.[SQL - Retail Sales Analysis_utf ]
 
 - **Category Count**: Identify all unique product categories in the dataset.
+  
 Select count(distinct(category)) as Total_Category
 from dbo.[SQL - Retail Sales Analysis_utf ]
 Select distinct(category) as Category_type
 from dbo.[SQL - Retail Sales Analysis_utf ]
 
 - **Null Value Check**: Check for any null values in the dataset and delete records with missing data.
+  
 select *
 from dbo.[SQL - Retail Sales Analysis_utf ]
 where 
 	transactions_id is NULL
-	or quantiy is NULL
+	or quantity is NULL
 
 ----Delete records with NUll values----------------------------------
 Delete 
 from dbo.[SQL - Retail Sales Analysis_utf ]
 where 
 	transactions_id is NULL
-	or quantiy is NULL
+	or quantity is NULL
 
 ### 3. Data Analysis & Findings
 
 The following SQL queries were developed to answer specific business questions:
 
 1. **Write a SQL query to retrieve all columns for sales made on '2022-11-0.**:
+   
 Select *
 from dbo.[SQL - Retail Sales Analysis_utf ]
 where sale_date = '2022-11-05'
 
 2.**Write a SQL query to retrieve all transactions where the category is clothing and the quantity sold is more than 4 in the month of Nov-2022?**:
+
 Select * 
 from dbo.[SQL - Retail Sales Analysis_utf ]
 where category = 'Clothing'
@@ -72,17 +78,20 @@ where category = 'Clothing'
 	and quantiy >= 4
  
 3. **Write a SQL query to calculate the total sales (total_sale) for each category.**:
+
 Select category, sum(total_sale) as TotalSalesByCategory
 from dbo.[SQL - Retail Sales Analysis_utf ]
 group by category
 
 4. **Write a SQL query to find the average age of customers who purchased items from the beauty category.**:
+
 Select AVG(age) as Average_age
 from dbo.[SQL - Retail Sales Analysis_utf ]
 where category = 'Beauty'
 and age is not null
 
 5. **Write a SQL query to find all transactions where the total_sale is greater than 1000.**:
+
 Select *
 from dbo.[SQL - Retail Sales Analysis_utf ]
 where total_sale > 1000
@@ -94,6 +103,7 @@ group by category, gender
 order by 1
 
 7. **Write a SQL query to calculate the average sale for each month. Find out best-selling month in each year.**:
+
 WITH Best_Selling_Month AS(
 	SELECT
 		YEAR(sale_date) AS year_val,
@@ -112,6 +122,7 @@ Select  year_val, month_val, AvgSales
 	WHERE RankByAvgSale = 1
  
 8. **Write a SQL query to find top 5 customers based on the highest total sales.**:
+
 WITH TOP_5_Customers AS(
 	Select customer_id, sum(total_sale) as TotalSalesByCustomer
 	from dbo.[SQL - Retail Sales Analysis_utf ]
@@ -124,6 +135,7 @@ from TOP_5_Customers
 order by TotalSalesByCustomer DESC
 
 9. **Write a SQL query to find the number of unique customers who purchased items from each category.**:
+
 Select category, count(DISTINCT customer_id) as Count_Unique_Customers
 from dbo.[SQL - Retail Sales Analysis_utf ]
 group by category
